@@ -15,7 +15,7 @@
  */
 
 variable "project_id" {
-  description = "Bucketss project id."
+  description = "Bucketss projects id."
   type        = string
 }
 
