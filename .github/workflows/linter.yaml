@@ -30,12 +30,14 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         if: steps.fc.outputs.comment-id == null
         with:
+          token: ${{ secrets.CFT_ROBOT_PAT }}
           issue-number: ${{ github.event.pull_request.number }}
           body: ${{ steps.lint.outputs.lint_op }}
       - name: Update test report comment on PR
         uses: peter-evans/create-or-update-comment@v1
         if: steps.fc.outputs.comment-id != null
         with:
+          token: ${{ secrets.CFT_ROBOT_PAT }}  
           comment-id: ${{ steps.fc.outputs.comment-id }}
           body: ${{ steps.lint.outputs.lint_op }}
           edit-mode: replace
