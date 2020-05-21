@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-variable "project_id" {
+variable "project_ids" {
   description = "Bucket project id."
   type        = string
 }
