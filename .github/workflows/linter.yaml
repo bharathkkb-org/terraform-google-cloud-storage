@@ -1,6 +1,7 @@
 name: Run lint
 
-on: [pull_request]
+on: 
+  status: ['error','failure','pending','success']
 
 jobs:
   lint:
