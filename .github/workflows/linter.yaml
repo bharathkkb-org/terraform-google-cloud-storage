@@ -1,7 +1,6 @@
 name: Run lint
 
-on: 
-  status: ['error','failure','pending','success']
+on: [pull_request]
 
 jobs:
   lint:
@@ -20,25 +19,8 @@ jobs:
           final_message="${final_message//'%'/'%25'}"
           final_message="${final_message//$'\n'/'%0A'}"
           final_message="${final_message//$'\r'/'%0D'}"
-          echo "::set-output name=lint_op::$final_message"
-      - name: Check if bot has already commented
-        uses: peter-evans/find-comment@v1
-        id: fc
+          echo "$final_message" > log.md
+      - uses: actions/upload-artifact@v2
         with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: github-actions[bot]
-      - name: Add test report comment on PR
-        uses: peter-evans/create-or-update-comment@v1
-        if: steps.fc.outputs.comment-id == null
-        with:
-          token: ${{ secrets.CFT_ROBOT_PAT }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: ${{ steps.lint.outputs.lint_op }}
-      - name: Update test report comment on PR
-        uses: peter-evans/create-or-update-comment@v1
-        if: steps.fc.outputs.comment-id != null
-        with:
-          token: ${{ secrets.CFT_ROBOT_PAT }}  
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          body: ${{ steps.lint.outputs.lint_op }}
-          edit-mode: replace
+          name: ${{ github.event.pull_request.number }}
+          path: ./log.md
