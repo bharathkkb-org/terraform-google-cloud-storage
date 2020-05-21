@@ -12,13 +12,14 @@ jobs:
       - name: Lint
         id: lint
         run: |-
-          final_message=$(make -s docker_test_lint_gha)
-          if [ -z "$final_message" ]; then
-          final_message="Thanks for the PR! 🚀<br/>✅Lint checks have passed."
-          fi
-          final_message="${final_message//'%'/'%25'}"
-          final_message="${final_message//$'\n'/'%0A'}"
-          final_message="${final_message//$'\r'/'%0D'}"
+          # final_message=$(make -s docker_test_lint_gha)
+          # if [ -z "$final_message" ]; then
+          # final_message="Thanks for the PR! 🚀<br/>✅Lint checks have passed."
+          # fi
+          # final_message="${final_message//'%'/'%25'}"
+          # final_message="${final_message//$'\n'/'%0A'}"
+          # final_message="${final_message//$'\r'/'%0D'}"
+          final_message="## test"
           echo "$final_message" > log.md
       - uses: actions/upload-artifact@v2
         with:
