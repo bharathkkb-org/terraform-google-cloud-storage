@@ -15,9 +15,9 @@
 # Make will use bash instead of sh
 SHELL := /usr/bin/env bash
 
-DOCKER_TAG_VERSION_DEVELOPER_TOOLS := 0.10.0
+DOCKER_TAG_VERSION_DEVELOPER_TOOLS := 0.10.2
 DOCKER_IMAGE_DEVELOPER_TOOLS := cft/developer-tools
-REGISTRY_URL := gcr.io/cloud-foundation-cicd
+REGISTRY_URL := gcr.io/cloud-build-bharath-org-gh
 
 # Enter docker container for local development
 .PHONY: docker_run
@@ -69,13 +69,13 @@ docker_test_lint:
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/test_lint.sh
 
-# Execute lint tests in github actions
-.PHONY: docker_test_lint_gha
-docker_test_lint_gha:
+# Execute lint tests feedback via PR comment
+.PHONY: docker_test_lint_feedback
+docker_test_lint_feedback:
 	docker run --rm \
 		-v $(CURDIR):/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
-		/usr/local/bin/test_lint.sh --markdown --contrib-guide=../blob/master/CONTRIBUTING.md
+		/bin/bash -c 'source /usr/local/bin/task_helper_functions.sh && generate_docs'
 
 
 # Generate documentation
