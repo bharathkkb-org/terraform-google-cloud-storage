@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-output "bucket" {
+output "bucketss" {
   description = "Bucket resource (for single use)."
   value       = google_storage_bucket.buckets[0]
 }
