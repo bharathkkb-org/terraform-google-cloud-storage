@@ -13,12 +13,12 @@
 # limitations under the License.
 
 steps:
-- id: 'lint-tests'
-  name: 'gcr.io/cloud-build-bharath-org-gh/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/usr/local/bin/test_lint.sh']
+# - id: 'lint-tests'
+#   name: 'gcr.io/cloud-build-bharath-org-gh/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+#   args: ['/usr/local/bin/test_lint.sh']
 - id: 'lint-gh-pr-comment'
   name: 'gcr.io/cloud-build-bharath-org-gh/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && generate_docs']
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && post_lint_status_pr_comment']
 tags:
 - 'ci'
 - 'lint'
