@@ -23,6 +23,22 @@ steps:
   - _PR_NUMBER=$_PR_NUMBER
   - REPO_NAME=$REPO_NAME
   - _HEAD_REPO_URL=$_HEAD_REPO_URL
+- id: 'Echo'
+  name: gcr.io/cloud-builders/curl
+  entrypoint: /bin/bash
+  args:
+    - -c
+    - |
+      echo _HEAD_BRANCH
+      echo _BASE_BRANCH
+      echo _HEAD_REPO_URL
+      echo _PR_NUMBER
+      echo REPO_NAME
+      echo BRANCH_NAME
+      echo TAG_NAME
+      echo REVISION_ID
+      echo COMMIT_SHA
+      echo SHORT_SHA
 tags:
 - 'ci'
 - 'lint'
