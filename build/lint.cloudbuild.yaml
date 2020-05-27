@@ -24,31 +24,12 @@ steps:
 #   - REPO_NAME=$REPO_NAME
 #   - _HEAD_REPO_URL=$_HEAD_REPO_URL
 - id: 'Echo'
-  name: gcr.io/cloud-builders/curl
+  name: gcr.io/cloud-builders/git
   entrypoint: /bin/bash
   args:
     - -c
     - |
-      echo $_HEAD_BRANCH
-      echo $_BASE_BRANCH
-      echo $_HEAD_REPO_URL
-      echo $_PR_NUMBER
-      echo $REPO_NAME
-      echo $BRANCH_NAME
-      echo $TAG_NAME
-      echo $REVISION_ID
-      echo $COMMIT_SHA
-      echo $SHORT_SHA
-  env:
-  - _PR_NUMBER=$_PR_NUMBER
-  - REPO_NAME=$REPO_NAME
-  - _HEAD_BRANCH=$_HEAD_BRANCH
-  - _BASE_BRANCH=$_BASE_BRANCH
-  - BRANCH_NAME=$BRANCH_NAME
-  - TAG_NAME=$TAG_NAME
-  - REVISION_ID=$REVISION_ID
-  - COMMIT_SHA=$COMMIT_SHA
-  - SHORT_SHA=$SHORT_SHA
+      echo $(git config --get remote.origin.url)
 tags:
 - 'ci'
 - 'lint'
