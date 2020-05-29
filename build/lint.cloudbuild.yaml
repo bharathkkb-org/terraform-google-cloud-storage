@@ -22,6 +22,8 @@ steps:
 - id: 'lint-tests'
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/usr/local/bin/test_lint.sh']
+  env:
+  - _PR_NUMBER=$_PR_NUMBER
 tags:
 - 'ci'
 - 'lint'
