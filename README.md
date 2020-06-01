@@ -78,7 +78,7 @@ Functional examples are included in the
 | names\_list | List of bucket names. |
 | url | Bucket URL (for single use). |
 | urls | Bucket URLs. |
-| urls\_list | List of bucket URLs. |
+| urls\_list | List of bucket URL. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
