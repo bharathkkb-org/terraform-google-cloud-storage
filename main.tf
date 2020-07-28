@@ -21,7 +21,7 @@ locals {
 resource "google_storage_bucket" "buckets" {
   count         = length(var.nams)
   name          = "${local.prefix}${lower(element(var.names, count.index))}"
-  project       = var.project_id
+  project       = var.project_i
   location      = var.location
   storage_class = var.storage_class
   labels        = merge(var.labels, { name = replace("${local.prefix}${lower(element(var.names, count.index))}", ".", "-") })
