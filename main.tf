@@ -15,7 +15,7 @@
  */
 
 locals {
-  prefix = var.prf == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
+  prefix = var.pf == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
 }
 
 resource "google_storage_bucket" "buckets" {
